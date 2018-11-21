@@ -14,6 +14,8 @@ import android.widget.EditText;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button buttonSearch;
+    EditText siteUrl;
+    WebView webView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,14 +24,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         buttonSearch = findViewById(R.id.buttonSearch);
         buttonSearch.setOnClickListener(this);
-        
+        siteUrl = findViewById(R.id.editTextInput);
+        webView = findViewById(R.id.webView);
+
+        webView.getSettings().setJavaScriptEnabled(true);//JavaScript 해석 하라고
     }
 
     @Override
     public void onClick(View view) {
-        EditText siteUrl = findViewById(R.id.editTextInput);
-        WebView webView = findViewById(R.id.webView);
-        webView.getSettings().setJavaScriptEnabled(true);
+        //콜백함수
         webView.setWebViewClient(new WebViewClient(){
             //콜백함수
             @Override
@@ -37,7 +40,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return super.shouldOverrideUrlLoading(view, request);
             }
         });
-        webView.loadUrl(siteUrl.getText().toString());
+        String address = siteUrl.getText().toString();//입력한 url 가져옴
+        if(address.startsWith("http://")==false){
+            address="http://"+address;
+        }
+        webView.loadUrl(address);//url 화면 로드
         webView.requestFocus();
 
         //키보드 숨기기
