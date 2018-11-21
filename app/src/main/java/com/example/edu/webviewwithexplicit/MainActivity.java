@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         buttonSearch = findViewById(R.id.buttonSearch);
         buttonSearch.setOnClickListener(this);
+        
     }
 
     @Override
