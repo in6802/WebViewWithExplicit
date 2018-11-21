@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">WebViewWithExplicit</string>
+    <string name="editTextInput">Input</string>
+    <string name="buttonSearch">Search</string>
+</resources>
